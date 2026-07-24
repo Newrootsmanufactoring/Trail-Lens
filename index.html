@@ -381,6 +381,32 @@
   .mobile-menu.open { display:flex; }
   .mobile-menu a { color:var(--fog); text-decoration:none; font-size:1.1rem; font-weight:500; border-bottom:1px solid rgba(200,168,75,0.1); padding-bottom:1rem; }
 
+  /* ── NEW: status banners, token setup, image previews ── */
+  .admin-banner {
+    padding:0.8rem 1rem; border-radius:2px; font-size:0.85rem; margin-bottom:1rem;
+    display:none; line-height:1.5;
+  }
+  .admin-banner.show { display:block; }
+  .admin-banner.ok { background:rgba(61,92,46,0.25); border:1px solid rgba(61,92,46,0.6); color:#c8e0b8; }
+  .admin-banner.err { background:rgba(200,90,58,0.15); border:1px solid rgba(200,90,58,0.5); color:#f0b8a0; }
+  .admin-banner.info { background:rgba(200,168,75,0.1); border:1px solid rgba(200,168,75,0.3); color:var(--fog); }
+  .token-status { font-size:0.8rem; margin-top:0.6rem; }
+  .token-status.set { color:#a8d090; }
+  .token-status.unset { color:#e0a080; }
+  .admin-help {
+    background: rgba(255,255,255,0.03); border:1px solid rgba(200,168,75,0.12);
+    border-radius:2px; padding:1rem 1.2rem; font-size:0.8rem; color:var(--stone);
+    line-height:1.7; margin-bottom:1rem;
+  }
+  .admin-help a { color: var(--gold); }
+  .admin-help ol { margin-left:1.2rem; margin-top:0.4rem; }
+  .card-img-real { width:100%; height:100%; object-fit:cover; display:block; }
+  .btn[disabled] { opacity:0.5; cursor:not-allowed; }
+  .btn-danger-outline { background:transparent; border:1px solid rgba(200,90,58,0.4); color:#e0a080; }
+  .btn-danger-outline:hover { border-color:#c85a3a; color:#c85a3a; }
+  .spin { display:inline-block; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   @media(max-width:768px) {
     .nav-links { display:none; }
     .nav-mobile-btn { display:block; }
@@ -438,23 +464,17 @@
   <div class="hero-bg"></div>
   <div class="logo-mark">
     <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer ring -->
       <circle cx="60" cy="60" r="56" stroke="#c8a84b" stroke-width="1" opacity="0.4"/>
       <circle cx="60" cy="60" r="50" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
-      <!-- Camera lens rings -->
       <circle cx="60" cy="60" r="38" stroke="#c8a84b" stroke-width="1" opacity="0.5"/>
       <circle cx="60" cy="60" r="28" stroke="#c8a84b" stroke-width="1.5" opacity="0.6"/>
       <circle cx="60" cy="60" r="16" fill="#c8a84b" opacity="0.15"/>
       <circle cx="60" cy="60" r="10" fill="#c8a84b" opacity="0.3"/>
-      <!-- Tree silhouette -->
       <path d="M60 22 L60 58" stroke="#c8a84b" stroke-width="2" stroke-linecap="round"/>
       <path d="M52 32 L60 22 L68 32" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M50 40 L60 28 L70 40" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Horizon line -->
       <path d="M30 68 Q60 56 90 68" stroke="#3d5c2e" stroke-width="2.5" fill="none" opacity="0.9"/>
-      <!-- Forest ground -->
       <path d="M24 76 Q60 62 96 76 L96 82 Q60 70 24 82 Z" fill="#3d5c2e" opacity="0.6"/>
-      <!-- Sun/aperture highlight -->
       <circle cx="80" cy="40" r="6" fill="none" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
       <circle cx="80" cy="40" r="3" fill="#c8a84b" opacity="0.5"/>
     </svg>
@@ -471,7 +491,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
-    <div class="about-photo">
+    <div class="about-photo" id="aboutPhotoBox">
       <div class="photo-placeholder">
         <svg fill="none" viewBox="0 0 48 48" stroke="currentColor"><circle cx="24" cy="18" r="8" stroke-width="1.5"/><path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke-width="1.5" stroke-linecap="round"/></svg>
         <span>Your Photo Here</span>
@@ -495,51 +515,7 @@
   <h2 class="section-title">Trail Areas I'm Visiting</h2>
   <div class="section-divider"></div>
   <p style="color:var(--stone); margin-bottom:0.5rem; font-size:0.9rem;">Sections 29–35 and the Owen Sound area. Updated as I walk them.</p>
-  <div class="trail-grid" id="trailGrid">
-
-    <div class="trail-card">
-      <div class="trail-card-img">
-        <div class="img-overlay">
-          <svg fill="none" viewBox="0 0 32 32" stroke="#c8a84b" stroke-width="1.5"><path d="M16 4 L16 24 M10 10 L16 4 L22 10 M10 16 L16 10 L22 16"/><path d="M8 26 Q16 20 24 26"/></svg>
-          <span style="font-size:0.65rem; color:var(--stone); letter-spacing:0.1em; text-transform:uppercase;">Add Photo</span>
-        </div>
-      </div>
-      <div class="trail-card-body">
-        <div class="trail-card-section">Section 29</div>
-        <div class="trail-card-name">Owen Sound Side Trail</div>
-        <div class="trail-card-desc">Daily access from home. Limestone outcrops, cedar groves, and the escarpment edge above town. Best in early morning fog.</div>
-      </div>
-    </div>
-
-    <div class="trail-card">
-      <div class="trail-card-img">
-        <div class="img-overlay">
-          <svg fill="none" viewBox="0 0 32 32" stroke="#c8a84b" stroke-width="1.5"><path d="M16 4 L16 24 M10 10 L16 4 L22 10 M10 16 L16 10 L22 16"/><path d="M8 26 Q16 20 24 26"/></svg>
-          <span style="font-size:0.65rem; color:var(--stone); letter-spacing:0.1em; text-transform:uppercase;">Add Photo</span>
-        </div>
-      </div>
-      <div class="trail-card-body">
-        <div class="trail-card-section">Section 30</div>
-        <div class="trail-card-name">Inglis Falls Area</div>
-        <div class="trail-card-desc">One of the best waterfall sections on the escarpment. Rock shelves and fossil beds along the Sydenham River.</div>
-      </div>
-    </div>
-
-    <div class="trail-card">
-      <div class="trail-card-img">
-        <div class="img-overlay">
-          <svg fill="none" viewBox="0 0 32 32" stroke="#c8a84b" stroke-width="1.5"><path d="M16 4 L16 24 M10 10 L16 4 L22 10 M10 16 L16 10 L22 16"/><path d="M8 26 Q16 20 24 26"/></svg>
-          <span style="font-size:0.65rem; color:var(--stone); letter-spacing:0.1em; text-transform:uppercase;">Add Photo</span>
-        </div>
-      </div>
-      <div class="trail-card-body">
-        <div class="trail-card-section">Section 31–32</div>
-        <div class="trail-card-name">Walters Falls to Eugenia</div>
-        <div class="trail-card-desc">Deep forest and open escarpment views. Hidden caves and seasonal streams through the Beaver Valley corridor.</div>
-      </div>
-    </div>
-
-  </div>
+  <div class="trail-grid" id="trailGrid"></div>
 </section>
 
 <!-- GALLERY -->
@@ -547,44 +523,8 @@
   <div class="section-label">Photography</div>
   <h2 class="section-title">Gallery</h2>
   <div class="section-divider"></div>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><rect x="6" y="10" width="36" height="28" rx="2"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="4"/><path d="M18 10 L20 6 L28 6 L30 10"/></svg>
-        <span>Featured Photo</span>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><path d="M6 36 L16 24 L24 30 L32 20 L42 36 Z" fill="rgba(200,200,180,0.05)"/></svg>
-        <span>Photo</span>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="10"/><path d="M24 4 L24 10 M24 38 L24 44 M4 24 L10 24 M38 24 L44 24"/></svg>
-        <span>Photo</span>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><path d="M6 36 L16 24 L24 30 L32 20 L42 36 Z"/></svg>
-        <span>Photo</span>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><path d="M8 28 Q24 12 40 28"/></svg>
-        <span>Photo</span>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <svg fill="none" viewBox="0 0 48 48" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="8"/></svg>
-        <span>Photo</span>
-      </div>
-    </div>
-  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <p id="galleryEmptyMsg" style="color:var(--stone); font-size:0.85rem; margin-top:1rem; display:none;">No photos yet — check back soon.</p>
 </section>
 
 <!-- PRINTS -->
@@ -593,60 +533,7 @@
   <h2 class="section-title">Prints for Sale</h2>
   <div class="section-divider"></div>
   <p style="color:var(--stone); font-size:0.9rem; margin-bottom:0.5rem;">Large-format limited-run canvas prints. Each print comes with a copy of the original inspiring photograph.</p>
-  <div class="prints-grid">
-
-    <div class="print-card">
-      <div class="print-card-img">
-        <div class="img-ph">
-          <svg fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="1"/><circle cx="16" cy="16" r="5"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="print-card-body">
-        <div class="print-title">Morning Fog — Owen Sound Escarpment</div>
-        <div class="print-desc">16×20 canvas. Limited run of 25. Signed and numbered.</div>
-        <div class="print-footer">
-          <span class="print-price">$125</span>
-          <a href="#donate" class="btn btn-gold print-btn">Inquire</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="print-card">
-      <div class="print-card-img">
-        <div class="img-ph">
-          <svg fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="1"/><circle cx="16" cy="16" r="5"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="print-card-body">
-        <div class="print-title">Inglis Falls — Winter Ice</div>
-        <div class="print-desc">20×24 canvas. Limited run of 15. Signed and numbered.</div>
-        <div class="print-footer">
-          <span class="print-price">$175</span>
-          <a href="#donate" class="btn btn-gold print-btn">Inquire</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="print-card">
-      <div class="print-card-img">
-        <div class="img-ph">
-          <svg fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="1"/><circle cx="16" cy="16" r="5"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="print-card-body">
-        <div class="print-title">Georgian Bay Cedar Shore</div>
-        <div class="print-desc">16×20 canvas. Limited run of 20. Signed and numbered.</div>
-        <div class="print-footer">
-          <span class="print-price">$125</span>
-          <a href="#donate" class="btn btn-gold print-btn">Inquire</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div class="prints-grid" id="printsGrid"></div>
 </section>
 
 <!-- ART -->
@@ -655,54 +542,7 @@
   <h2 class="section-title">Art From the Trail</h2>
   <div class="section-divider"></div>
   <p style="color:var(--stone); font-size:0.9rem; margin-bottom:0.5rem;">Encaustic wax and oil paintings inspired by trail photography. Originals retained unless the price is right.</p>
-  <div class="art-grid">
-
-    <div class="art-card">
-      <div class="art-card-img">
-        <div class="art-ph">
-          <svg fill="none" viewBox="0 0 36 36" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><path d="M4 24 L12 16 L18 20 L24 12 L32 24"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="art-card-body">
-        <div class="art-medium">Encaustic Wax</div>
-        <div class="art-title">Escarpment Edge — Autumn</div>
-        <div class="art-desc">Hot wax and pigment on wood panel. The light that comes sideways through old maple in October.</div>
-        <div class="art-note">Original · Contact to inquire about price</div>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="art-card-img">
-        <div class="art-ph">
-          <svg fill="none" viewBox="0 0 36 36" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><path d="M4 24 L12 16 L18 20 L24 12 L32 24"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="art-card-body">
-        <div class="art-medium">Oil Painting</div>
-        <div class="art-title">Georgian Bay Shoreline</div>
-        <div class="art-desc">Oil on canvas. The cold blue of Georgian Bay on a November morning. Cedar leaning over flat rock.</div>
-        <div class="art-note">Original · Contact to inquire about price</div>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="art-card-img">
-        <div class="art-ph">
-          <svg fill="none" viewBox="0 0 36 36" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><path d="M4 24 L12 16 L18 20 L24 12 L32 24"/></svg>
-          <span>Add Photo</span>
-        </div>
-      </div>
-      <div class="art-card-body">
-        <div class="art-medium">Encaustic Wax</div>
-        <div class="art-title">Cave Light — Section 31</div>
-        <div class="art-desc">Encaustic on panel. The way light enters a small cave mouth in afternoon. Found on the trail, not on any map.</div>
-        <div class="art-note">Original · Contact to inquire about price</div>
-      </div>
-    </div>
-
-  </div>
+  <div class="art-grid" id="artGrid"></div>
 </section>
 
 <!-- GEAR -->
@@ -714,27 +554,7 @@
     <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 12 L12 3 L21 12 L12 21 Z"/></svg>
     Canadian brands and products only
   </div>
-  <div class="gear-grid">
-
-    <div class="gear-card">
-      <div class="gear-brand">MEC · Canada</div>
-      <div class="gear-name">Approach Trail Boot</div>
-      <div class="gear-review">Four seasons on the Bruce Trail and still going. The limestone edge sections in wet weather are where most boots fail — these grip. Good Canadian value.</div>
-      <div class="gear-rating">
-        <span>★</span><span>★</span><span>★</span><span>★</span><span class="empty">★</span>
-      </div>
-    </div>
-
-    <div class="gear-card">
-      <div class="gear-brand">Add Brand · Canada</div>
-      <div class="gear-name">Your Gear Item Here</div>
-      <div class="gear-review">Write your honest review here. What works, what doesn't, and why it matters on trail.</div>
-      <div class="gear-rating">
-        <span>★</span><span>★</span><span>★</span><span class="empty">★</span><span class="empty">★</span>
-      </div>
-    </div>
-
-  </div>
+  <div class="gear-grid" id="gearGrid"></div>
 </section>
 
 <!-- COMMUNITY -->
@@ -742,7 +562,7 @@
   <div class="section-label">Community</div>
   <h2 class="section-title">Trail Talk</h2>
   <div class="section-divider"></div>
-  <p style="color:var(--stone); font-size:0.9rem; margin-bottom:0.5rem;">Leave a comment, ask about a section, or share what you found on the trail.</p>
+  <p style="color:var(--stone); font-size:0.9rem; margin-bottom:0.5rem;">Leave a comment, ask about a section, or share what you found on the trail. <em>(Note: comments here are just for this visit — they clear on refresh. Let me know if you want real saved comments added later.)</em></p>
   <div class="chat-box">
     <div class="chat-messages" id="chatMessages">
       <div class="chat-msg">
@@ -819,13 +639,42 @@
   </div>
   <div class="admin-body">
 
+    <div class="admin-banner" id="statusBanner"></div>
+
+    <div class="admin-section">
+      <h3>1. Connect to GitHub (do this first)</h3>
+      <div class="admin-help">
+        This is the one-time setup that lets Save actually work. It's a special access code from GitHub, scoped so it can only edit this one site — nothing else in your account.
+        <ol>
+          <li>Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (log into GitHub first)</li>
+          <li>Under "Repository access," choose <strong>Only select repositories</strong> → pick <strong>Trail-Lens</strong></li>
+          <li>Under "Permissions" → "Repository permissions" → find <strong>Contents</strong> → set to <strong>Read and write</strong></li>
+          <li>Scroll down, click <strong>Generate token</strong></li>
+          <li>Copy the code it gives you (starts with <span style="font-family:'Space Mono',monospace;">github_pat_...</span>) and paste it below</li>
+        </ol>
+        This code is saved only in this browser, on this device. I (Claude) never see it.
+      </div>
+      <div class="admin-field">
+        <label>GitHub Access Code</label>
+        <input type="password" id="ghToken" placeholder="github_pat_...">
+      </div>
+      <button class="btn btn-gold" onclick="saveToken()">Save Access Code</button>
+      <button class="btn btn-danger-outline" onclick="clearToken()">Remove Access Code</button>
+      <p class="token-status" id="tokenStatus"></p>
+    </div>
+
     <div class="admin-section">
       <h3>Upload Photo to Gallery</h3>
-      <p style="color:var(--stone); font-size:0.85rem; margin-bottom:1rem;">Photos are automatically watermarked with your name invisibly. Clean on screen — marked when saved.</p>
+      <p style="color:var(--stone); font-size:0.85rem; margin-bottom:1rem;">Photos are automatically watermarked invisibly (baked into the pixel data — survives right-click save).</p>
+      <div class="admin-field">
+        <label>Caption (optional)</label>
+        <input type="text" id="galleryCaption">
+      </div>
       <div class="admin-field">
         <label>Select Photo File</label>
-        <input type="file" id="galleryUpload" accept="image/*" onchange="uploadToGallery(this)" style="color:var(--fog);">
+        <input type="file" id="galleryUpload" accept="image/*" style="color:var(--fog);">
       </div>
+      <button class="btn btn-gold" id="galleryUploadBtn" onclick="uploadToGallery()">Upload Photo</button>
     </div>
 
     <div class="admin-section">
@@ -837,7 +686,8 @@
       <div class="admin-form-row single">
         <div class="admin-field"><label>Description</label><textarea id="aDesc"></textarea></div>
       </div>
-      <button class="btn btn-gold" onclick="addTrailArea()">Add Trail Area</button>
+      <div class="admin-field" style="margin-bottom:1rem;"><label>Photo (optional)</label><input type="file" id="aPhoto" accept="image/*"></div>
+      <button class="btn btn-gold" id="addTrailBtn" onclick="addTrailArea()">Add Trail Area</button>
     </div>
 
     <div class="admin-section">
@@ -849,7 +699,8 @@
       <div class="admin-form-row single">
         <div class="admin-field"><label>Description</label><textarea id="pDesc"></textarea></div>
       </div>
-      <button class="btn btn-gold" onclick="addPrint()">Add Print</button>
+      <div class="admin-field" style="margin-bottom:1rem;"><label>Photo (optional)</label><input type="file" id="pPhoto" accept="image/*"></div>
+      <button class="btn btn-gold" id="addPrintBtn" onclick="addPrint()">Add Print</button>
     </div>
 
     <div class="admin-section">
@@ -861,7 +712,8 @@
       <div class="admin-form-row single">
         <div class="admin-field"><label>Description</label><textarea id="artDesc"></textarea></div>
       </div>
-      <button class="btn btn-gold" onclick="addArt()">Add Art Piece</button>
+      <div class="admin-field" style="margin-bottom:1rem;"><label>Photo (optional)</label><input type="file" id="artPhoto" accept="image/*"></div>
+      <button class="btn btn-gold" id="addArtBtn" onclick="addArt()">Add Art Piece</button>
     </div>
 
     <div class="admin-section">
@@ -874,11 +726,18 @@
         <div class="admin-field"><label>Review</label><textarea id="gReview"></textarea></div>
         <div class="admin-field"><label>Rating (1–5)</label><input type="number" id="gRating" min="1" max="5" value="4"></div>
       </div>
-      <button class="btn btn-gold" onclick="addGear()">Add Gear Review</button>
+      <button class="btn btn-gold" id="addGearBtn" onclick="addGear()">Add Gear Review</button>
+    </div>
+
+    <div class="admin-section">
+      <h3>About Page Photo</h3>
+      <div class="admin-field" style="margin-bottom:1rem;"><label>Your Photo</label><input type="file" id="aboutPhoto" accept="image/*"></div>
+      <button class="btn btn-gold" id="setAboutPhotoBtn" onclick="setAboutPhoto()">Set About Photo</button>
     </div>
 
     <div class="admin-section">
       <h3>Change Admin Password</h3>
+      <p style="color:var(--stone); font-size:0.8rem; margin-bottom:1rem;">Note: this password just keeps casual visitors out of clicking the Admin button. It is not what protects your data — the GitHub Access Code above does that.</p>
       <div class="admin-form-row">
         <div class="admin-field"><label>New Password</label><input type="password" id="newPass1"></div>
         <div class="admin-field"><label>Confirm New Password</label><input type="password" id="newPass2"></div>
@@ -892,62 +751,285 @@
 
 <script>
 // ═══════════════════════════════════════
-// INVISIBLE WATERMARK ENGINE
-// Bakes owner info into every photo's pixel data
-// Survives right-click save. Clean on screen.
+// CONFIG
+// ═══════════════════════════════════════
+const GH_OWNER  = 'Newrootsmanufactoring';
+const GH_REPO   = 'Trail-Lens';
+const GH_BRANCH = 'main';
+const DATA_PATH = 'data.json';
+const API_BASE  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`;
+const RAW_BASE  = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}`;
+
+let SITE_DATA = { about:{photo:''}, trailAreas:[], gallery:[], prints:[], art:[], gear:[] };
+let DATA_SHA  = null; // needed to save data.json back to GitHub
+
+// ═══════════════════════════════════════
+// GITHUB TOKEN (stored only in this browser)
+// ═══════════════════════════════════════
+function getToken() { return localStorage.getItem('tlGhToken') || ''; }
+
+function saveToken() {
+  const t = document.getElementById('ghToken').value.trim();
+  if (!t) { showBanner('err', 'Paste your GitHub Access Code first.'); return; }
+  localStorage.setItem('tlGhToken', t);
+  document.getElementById('ghToken').value = '';
+  updateTokenStatus();
+  showBanner('ok', 'Access code saved on this device. You can now Save/Upload for real.');
+}
+function clearToken() {
+  localStorage.removeItem('tlGhToken');
+  updateTokenStatus();
+  showBanner('info', 'Access code removed from this device.');
+}
+function updateTokenStatus() {
+  const el = document.getElementById('tokenStatus');
+  if (!el) return;
+  if (getToken()) {
+    el.textContent = '✓ Access code is set on this device — saving is enabled.';
+    el.className = 'token-status set';
+  } else {
+    el.textContent = '⚠ No access code set yet — uploads and adds will not save until you add one above.';
+    el.className = 'token-status unset';
+  }
+}
+
+function showBanner(type, msg) {
+  const b = document.getElementById('statusBanner');
+  if (!b) return;
+  b.className = 'admin-banner show ' + type;
+  b.textContent = msg;
+  b.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// ═══════════════════════════════════════
+// GITHUB API HELPERS
+// ═══════════════════════════════════════
+function ghHeaders() {
+  const h = { 'Accept': 'application/vnd.github+json' };
+  const t = getToken();
+  if (t) h['Authorization'] = 'Bearer ' + t;
+  return h;
+}
+
+async function ghGetFile(path) {
+  const res = await fetch(`${API_BASE}/contents/${path}?ref=${GH_BRANCH}&t=${Date.now()}`, { headers: ghHeaders() });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Could not read ${path} (${res.status})`);
+  const json = await res.json();
+  return json; // includes .sha and base64 .content
+}
+
+async function ghPutFile(path, base64Content, message, sha) {
+  const t = getToken();
+  if (!t) throw new Error('NO_TOKEN');
+  const body = { message, content: base64Content, branch: GH_BRANCH };
+  if (sha) body.sha = sha;
+  const res = await fetch(`${API_BASE}/contents/${path}`, {
+    method: 'PUT',
+    headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const errJson = await res.json().catch(()=>({}));
+    if (res.status === 401 || res.status === 403) throw new Error('BAD_TOKEN');
+    throw new Error(errJson.message || `GitHub save failed (${res.status})`);
+  }
+  return res.json();
+}
+
+async function saveData(commitMessage) {
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(SITE_DATA, null, 2))));
+  const result = await ghPutFile(DATA_PATH, content, commitMessage, DATA_SHA);
+  DATA_SHA = result.content.sha;
+}
+
+async function uploadImageBase64(base64, folder, filenameHint) {
+  const safe = (filenameHint || 'photo').toLowerCase().replace(/[^a-z0-9.]+/g,'-').slice(0,40);
+  const path = `images/${folder}/${Date.now()}-${safe}.png`;
+  await ghPutFile(path, base64, `Upload photo: ${safe}`, null);
+  return `${RAW_BASE}/${path}`;
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result.split(',')[1]);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+function friendlyError(err) {
+  const msg = err && err.message ? err.message : String(err);
+  if (msg === 'NO_TOKEN') return 'No GitHub Access Code set yet. Scroll to "1. Connect to GitHub" above and add it first.';
+  if (msg === 'BAD_TOKEN') return 'Your GitHub Access Code was rejected. It may have expired or not have permission on Trail-Lens — try generating a new one.';
+  return 'Something went wrong saving: ' + msg;
+}
+
+// ═══════════════════════════════════════
+// LOAD DATA ON PAGE START
+// ═══════════════════════════════════════
+async function loadData() {
+  try {
+    const file = await ghGetFile(DATA_PATH);
+    if (file) {
+      DATA_SHA = file.sha;
+      const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
+      SITE_DATA = JSON.parse(decoded);
+    }
+  } catch (e) {
+    console.warn('Could not load data.json, using fallback empty state.', e);
+  }
+  renderAll();
+  updateTokenStatus();
+}
+
+function renderAll() {
+  renderTrail();
+  renderGallery();
+  renderPrints();
+  renderArt();
+  renderGear();
+  renderAboutPhoto();
+}
+
+function imgOrPlaceholder(url, placeholderSvg, label) {
+  if (url) return `<img class="card-img-real" src="${url}" alt="">`;
+  return `<div class="img-overlay" style="position:static; height:100%; display:flex;">${placeholderSvg}<span style="font-size:0.65rem; color:var(--stone); letter-spacing:0.1em; text-transform:uppercase;">${label}</span></div>`;
+}
+
+function renderTrail() {
+  const grid = document.getElementById('trailGrid');
+  const svg = `<svg fill="none" viewBox="0 0 32 32" stroke="#c8a84b" stroke-width="1.5"><path d="M16 4 L16 24 M10 10 L16 4 L22 10 M10 16 L16 10 L22 16"/><path d="M8 26 Q16 20 24 26"/></svg>`;
+  grid.innerHTML = SITE_DATA.trailAreas.map(t => `
+    <div class="trail-card">
+      <div class="trail-card-img">${imgOrPlaceholder(t.image, svg, 'No Photo')}</div>
+      <div class="trail-card-body">
+        <div class="trail-card-section">${escapeHtml(t.section)}</div>
+        <div class="trail-card-name">${escapeHtml(t.name)}</div>
+        <div class="trail-card-desc">${escapeHtml(t.desc)}</div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--stone);">No trail areas yet.</p>';
+}
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const empty = document.getElementById('galleryEmptyMsg');
+  grid.innerHTML = SITE_DATA.gallery.map(g => `
+    <div class="gallery-item">
+      <img class="card-img-real" src="${g.image}" alt="${escapeHtml(g.caption||'')}">
+    </div>`).join('');
+  empty.style.display = SITE_DATA.gallery.length ? 'none' : 'block';
+}
+
+function renderPrints() {
+  const grid = document.getElementById('printsGrid');
+  const svg = `<svg fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="1"/><circle cx="16" cy="16" r="5"/></svg>`;
+  grid.innerHTML = SITE_DATA.prints.map(p => `
+    <div class="print-card">
+      <div class="print-card-img">${imgOrPlaceholder(p.image, svg, 'No Photo')}</div>
+      <div class="print-card-body">
+        <div class="print-title">${escapeHtml(p.title)}</div>
+        <div class="print-desc">${escapeHtml(p.desc)}</div>
+        <div class="print-footer">
+          <span class="print-price">${escapeHtml(p.price)}</span>
+          <a href="#donate" class="btn btn-gold print-btn">Inquire</a>
+        </div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--stone);">No prints listed yet.</p>';
+}
+
+function renderArt() {
+  const grid = document.getElementById('artGrid');
+  const svg = `<svg fill="none" viewBox="0 0 36 36" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><path d="M4 24 L12 16 L18 20 L24 12 L32 24"/></svg>`;
+  grid.innerHTML = SITE_DATA.art.map(a => `
+    <div class="art-card">
+      <div class="art-card-img">${imgOrPlaceholder(a.image, svg, 'No Photo')}</div>
+      <div class="art-card-body">
+        <div class="art-medium">${escapeHtml(a.medium)}</div>
+        <div class="art-title">${escapeHtml(a.title)}</div>
+        <div class="art-desc">${escapeHtml(a.desc)}</div>
+        <div class="art-note">Original · Contact to inquire about price</div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--stone);">No art pieces yet.</p>';
+}
+
+function renderGear() {
+  const grid = document.getElementById('gearGrid');
+  grid.innerHTML = SITE_DATA.gear.map(g => {
+    const stars = Array.from({length:5},(_,i)=>`<span class="${i<g.rating?'':'empty'}">★</span>`).join('');
+    return `
+    <div class="gear-card">
+      <div class="gear-brand">${escapeHtml(g.brand)}</div>
+      <div class="gear-name">${escapeHtml(g.name)}</div>
+      <div class="gear-review">${escapeHtml(g.review)}</div>
+      <div class="gear-rating">${stars}</div>
+    </div>`;
+  }).join('') || '<p style="color:var(--stone);">No gear reviews yet.</p>';
+}
+
+function renderAboutPhoto() {
+  const box = document.getElementById('aboutPhotoBox');
+  if (SITE_DATA.about && SITE_DATA.about.photo) {
+    box.innerHTML = `<img class="card-img-real" src="${SITE_DATA.about.photo}" alt="Glen Petchey">`;
+  }
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ═══════════════════════════════════════
+// INVISIBLE WATERMARK ENGINE (gallery photos)
 // ═══════════════════════════════════════
 const WM_OWNER = 'Glen Petchey';
 const WM_SITE  = 'Trail Lens';
 const WM_EMAIL = 'glenpetchey@gmail.com';
-const WM_YEAR  = new Date().getFullYear();
 
 function embedWatermark(ctx, w, h) {
-  const msg  = `(c) ${WM_YEAR} ${WM_OWNER} | ${WM_SITE} | ${WM_EMAIL}`;
+  const year = new Date().getFullYear();
+  const msg  = `(c) ${year} ${WM_OWNER} | ${WM_SITE} | ${WM_EMAIL}`;
   const data = ctx.getImageData(0, 0, w, h);
   const px   = data.data;
   let bits = '';
-  for (let i = 0; i < msg.length; i++) {
-    bits += msg.charCodeAt(i).toString(2).padStart(8, '0');
-  }
-  bits += '0000000000000000'; // end marker
+  for (let i = 0; i < msg.length; i++) bits += msg.charCodeAt(i).toString(2).padStart(8, '0');
+  bits += '0000000000000000';
   for (let i = 0; i < bits.length && i * 4 < px.length; i++) {
     px[i * 4] = (px[i * 4] & 0xFE) | parseInt(bits[i]);
   }
   ctx.putImageData(data, 0, 0);
 }
 
-function processImage(file, callback) {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = new Image();
-    img.onload = function() {
-      const canvas = document.createElement('canvas');
-      canvas.width  = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      embedWatermark(ctx, canvas.width, canvas.height);
-      callback(canvas);
+function processImageToWatermarkedBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        embedWatermark(ctx, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/png').split(',')[1]);
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
     };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 // ── BLOCK RIGHT-CLICK AND DRAG ON PHOTOS ──
 document.addEventListener('contextmenu', function(e) {
-  if (e.target.tagName === 'CANVAS' || e.target.tagName === 'IMG') {
+  if (e.target.tagName === 'IMG' && e.target.closest('.gallery-item')) {
     e.preventDefault();
     showWMToast();
   }
 });
-document.addEventListener('dragstart', function(e) {
-  if (e.target.tagName === 'CANVAS' || e.target.tagName === 'IMG') {
-    e.preventDefault();
-    showWMToast();
-  }
-});
-
 let toastTimer;
 function showWMToast() {
   const t = document.getElementById('wm-toast');
@@ -961,22 +1043,178 @@ function showWMToast() {
   }
 }
 
-// ── GALLERY UPLOAD (admin) ──
-function uploadToGallery(input) {
-  if (!input.files[0]) return;
-  processImage(input.files[0], function(canvas) {
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-    const grid = document.getElementById('galleryGrid');
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.appendChild(canvas);
-    grid.appendChild(item);
-    input.value = '';
-    alert('Photo added to gallery. Watermark embedded invisibly.');
-  });
+// ═══════════════════════════════════════
+// BUTTON HELPERS (loading state)
+// ═══════════════════════════════════════
+function setBusy(btnId, busy, busyLabel, normalLabel) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = busy;
+  btn.textContent = busy ? busyLabel : normalLabel;
 }
 
-// ── PASSWORD ──
+// ═══════════════════════════════════════
+// GALLERY UPLOAD (admin, real save)
+// ═══════════════════════════════════════
+async function uploadToGallery() {
+  const input = document.getElementById('galleryUpload');
+  const caption = document.getElementById('galleryCaption').value.trim();
+  if (!input.files[0]) { showBanner('err', 'Choose a photo file first.'); return; }
+  setBusy('galleryUploadBtn', true, 'Uploading…', 'Upload Photo');
+  try {
+    const base64 = await processImageToWatermarkedBase64(input.files[0]);
+    const url = await uploadImageBase64(base64, 'gallery', input.files[0].name);
+    SITE_DATA.gallery.unshift({ image: url, caption });
+    await saveData(`Add gallery photo${caption ? ': ' + caption : ''}`);
+    renderGallery();
+    input.value = '';
+    document.getElementById('galleryCaption').value = '';
+    showBanner('ok', 'Photo uploaded and saved to the live site. It may take a minute or two to appear for visitors.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('galleryUploadBtn', false, '', 'Upload Photo');
+}
+
+// ═══════════════════════════════════════
+// ADD TRAIL AREA
+// ═══════════════════════════════════════
+async function addTrailArea() {
+  const section = document.getElementById('aSection').value.trim();
+  const name = document.getElementById('aName').value.trim();
+  const desc = document.getElementById('aDesc').value.trim();
+  const photoInput = document.getElementById('aPhoto');
+  if (!section || !name) { showBanner('err', 'Please fill in section and name.'); return; }
+  setBusy('addTrailBtn', true, 'Saving…', 'Add Trail Area');
+  try {
+    let image = '';
+    if (photoInput.files[0]) {
+      const base64 = await fileToBase64(photoInput.files[0]);
+      image = await uploadImageBase64(base64, 'trail', photoInput.files[0].name);
+    }
+    SITE_DATA.trailAreas.push({ section, name, desc, image });
+    await saveData(`Add trail area: ${name}`);
+    renderTrail();
+    document.getElementById('aSection').value = '';
+    document.getElementById('aName').value = '';
+    document.getElementById('aDesc').value = '';
+    photoInput.value = '';
+    showBanner('ok', 'Trail area added and saved.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('addTrailBtn', false, '', 'Add Trail Area');
+}
+
+// ═══════════════════════════════════════
+// ADD PRINT
+// ═══════════════════════════════════════
+async function addPrint() {
+  const title = document.getElementById('pTitle').value.trim();
+  const price = document.getElementById('pPrice').value.trim();
+  const desc = document.getElementById('pDesc').value.trim();
+  const photoInput = document.getElementById('pPhoto');
+  if (!title || !price) { showBanner('err', 'Please fill in title and price.'); return; }
+  setBusy('addPrintBtn', true, 'Saving…', 'Add Print');
+  try {
+    let image = '';
+    if (photoInput.files[0]) {
+      const base64 = await fileToBase64(photoInput.files[0]);
+      image = await uploadImageBase64(base64, 'prints', photoInput.files[0].name);
+    }
+    SITE_DATA.prints.push({ title, price, desc, image });
+    await saveData(`Add print: ${title}`);
+    renderPrints();
+    document.getElementById('pTitle').value = '';
+    document.getElementById('pPrice').value = '';
+    document.getElementById('pDesc').value = '';
+    photoInput.value = '';
+    showBanner('ok', 'Print added and saved.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('addPrintBtn', false, '', 'Add Print');
+}
+
+// ═══════════════════════════════════════
+// ADD ART
+// ═══════════════════════════════════════
+async function addArt() {
+  const title = document.getElementById('artTitle').value.trim();
+  const medium = document.getElementById('artMedium').value.trim();
+  const desc = document.getElementById('artDesc').value.trim();
+  const photoInput = document.getElementById('artPhoto');
+  if (!title) { showBanner('err', 'Please fill in title.'); return; }
+  setBusy('addArtBtn', true, 'Saving…', 'Add Art Piece');
+  try {
+    let image = '';
+    if (photoInput.files[0]) {
+      const base64 = await fileToBase64(photoInput.files[0]);
+      image = await uploadImageBase64(base64, 'art', photoInput.files[0].name);
+    }
+    SITE_DATA.art.push({ title, medium, desc, image });
+    await saveData(`Add art piece: ${title}`);
+    renderArt();
+    document.getElementById('artTitle').value = '';
+    document.getElementById('artMedium').value = '';
+    document.getElementById('artDesc').value = '';
+    photoInput.value = '';
+    showBanner('ok', 'Art piece added and saved.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('addArtBtn', false, '', 'Add Art Piece');
+}
+
+// ═══════════════════════════════════════
+// ADD GEAR
+// ═══════════════════════════════════════
+async function addGear() {
+  const brand = document.getElementById('gBrand').value.trim();
+  const name = document.getElementById('gName').value.trim();
+  const review = document.getElementById('gReview').value.trim();
+  const rating = parseInt(document.getElementById('gRating').value) || 4;
+  if (!brand || !name) { showBanner('err', 'Please fill in brand and product name.'); return; }
+  setBusy('addGearBtn', true, 'Saving…', 'Add Gear Review');
+  try {
+    SITE_DATA.gear.push({ brand, name, review, rating });
+    await saveData(`Add gear review: ${name}`);
+    renderGear();
+    document.getElementById('gBrand').value = '';
+    document.getElementById('gName').value = '';
+    document.getElementById('gReview').value = '';
+    showBanner('ok', 'Gear review added and saved.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('addGearBtn', false, '', 'Add Gear Review');
+}
+
+// ═══════════════════════════════════════
+// ABOUT PHOTO
+// ═══════════════════════════════════════
+async function setAboutPhoto() {
+  const photoInput = document.getElementById('aboutPhoto');
+  if (!photoInput.files[0]) { showBanner('err', 'Choose a photo file first.'); return; }
+  setBusy('setAboutPhotoBtn', true, 'Saving…', 'Set About Photo');
+  try {
+    const base64 = await fileToBase64(photoInput.files[0]);
+    const url = await uploadImageBase64(base64, 'about', photoInput.files[0].name);
+    SITE_DATA.about = SITE_DATA.about || {};
+    SITE_DATA.about.photo = url;
+    await saveData('Update about photo');
+    renderAboutPhoto();
+    photoInput.value = '';
+    showBanner('ok', 'About photo updated and saved.');
+  } catch (e) {
+    showBanner('err', friendlyError(e));
+  }
+  setBusy('setAboutPhotoBtn', false, '', 'Set About Photo');
+}
+
+// ═══════════════════════════════════════
+// PASSWORD GATE (soft — convenience only, not real security)
+// ═══════════════════════════════════════
 let adminPassword = localStorage.getItem('tlAdminPass') || 'traillens2026';
 
 function openAdmin(e) {
@@ -992,6 +1230,7 @@ function checkAdmin() {
   if (document.getElementById('adminPass').value === adminPassword) {
     closeAdmin();
     document.getElementById('admin-panel').classList.add('active');
+    updateTokenStatus();
   } else {
     document.getElementById('adminErr').style.display = 'block';
   }
@@ -1012,15 +1251,15 @@ function changePassword() {
   document.getElementById('newPass2').value = '';
 }
 
-// ── MOBILE NAV ──
-function toggleMobileMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function closeMobileMenu() {
-  document.getElementById('mobileMenu').classList.remove('open');
-}
+// ═══════════════════════════════════════
+// MOBILE NAV
+// ═══════════════════════════════════════
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 
-// ── CHAT ──
+// ═══════════════════════════════════════
+// CHAT (local display only — not saved, see note on page)
+// ═══════════════════════════════════════
 function sendChat() {
   const name = document.getElementById('chatName').value.trim() || 'Visitor';
   const text = document.getElementById('chatInput').value.trim();
@@ -1034,8 +1273,8 @@ function sendChat() {
     <div class="chat-msg">
       <div class="chat-avatar" style="background:${color}">${initial}</div>
       <div class="chat-msg-body">
-        <div class="chat-msg-name">${name}</div>
-        <div class="chat-msg-text">${text}</div>
+        <div class="chat-msg-name">${escapeHtml(name)}</div>
+        <div class="chat-msg-text">${escapeHtml(text)}</div>
         <div class="chat-msg-time">${now}</div>
       </div>
     </div>`;
@@ -1043,116 +1282,10 @@ function sendChat() {
   msgs.scrollTop = msgs.scrollHeight;
 }
 
-// ── ADD TRAIL AREA ──
-function addTrailArea() {
-  const section = document.getElementById('aSection').value.trim();
-  const name = document.getElementById('aName').value.trim();
-  const desc = document.getElementById('aDesc').value.trim();
-  if (!section || !name) return alert('Please fill in section and name.');
-  const grid = document.getElementById('trailGrid');
-  const card = document.createElement('div');
-  card.className = 'trail-card';
-  card.innerHTML = `
-    <div class="trail-card-img">
-      <div class="img-overlay">
-        <svg fill="none" viewBox="0 0 32 32" stroke="#c8a84b" stroke-width="1.5"><path d="M16 4 L16 24 M10 10 L16 4 L22 10 M10 16 L16 10 L22 16"/><path d="M8 26 Q16 20 24 26"/></svg>
-        <span style="font-size:0.65rem; color:var(--stone); letter-spacing:0.1em; text-transform:uppercase;">Add Photo</span>
-      </div>
-    </div>
-    <div class="trail-card-body">
-      <div class="trail-card-section">${section}</div>
-      <div class="trail-card-name">${name}</div>
-      <div class="trail-card-desc">${desc}</div>
-    </div>`;
-  grid.appendChild(card);
-  document.getElementById('aSection').value = '';
-  document.getElementById('aName').value = '';
-  document.getElementById('aDesc').value = '';
-  alert('Trail area added!');
-}
-
-// ── ADD PRINT ──
-function addPrint() {
-  const title = document.getElementById('pTitle').value.trim();
-  const price = document.getElementById('pPrice').value.trim();
-  const desc = document.getElementById('pDesc').value.trim();
-  if (!title || !price) return alert('Please fill in title and price.');
-  const grid = document.querySelector('.prints-grid');
-  const card = document.createElement('div');
-  card.className = 'print-card';
-  card.innerHTML = `
-    <div class="print-card-img">
-      <div class="img-ph">
-        <svg fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="24" height="20" rx="1"/><circle cx="16" cy="16" r="5"/></svg>
-        <span>Add Photo</span>
-      </div>
-    </div>
-    <div class="print-card-body">
-      <div class="print-title">${title}</div>
-      <div class="print-desc">${desc}</div>
-      <div class="print-footer">
-        <span class="print-price">${price}</span>
-        <a href="#donate" class="btn btn-gold print-btn">Inquire</a>
-      </div>
-    </div>`;
-  grid.appendChild(card);
-  document.getElementById('pTitle').value = '';
-  document.getElementById('pPrice').value = '';
-  document.getElementById('pDesc').value = '';
-  alert('Print added!');
-}
-
-// ── ADD ART ──
-function addArt() {
-  const title = document.getElementById('artTitle').value.trim();
-  const medium = document.getElementById('artMedium').value.trim();
-  const desc = document.getElementById('artDesc').value.trim();
-  if (!title) return alert('Please fill in title.');
-  const grid = document.querySelector('.art-grid');
-  const card = document.createElement('div');
-  card.className = 'art-card';
-  card.innerHTML = `
-    <div class="art-card-img">
-      <div class="art-ph">
-        <svg fill="none" viewBox="0 0 36 36" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><path d="M4 24 L12 16 L18 20 L24 12 L32 24"/></svg>
-        <span>Add Photo</span>
-      </div>
-    </div>
-    <div class="art-card-body">
-      <div class="art-medium">${medium}</div>
-      <div class="art-title">${title}</div>
-      <div class="art-desc">${desc}</div>
-      <div class="art-note">Original · Contact to inquire about price</div>
-    </div>`;
-  grid.appendChild(card);
-  document.getElementById('artTitle').value = '';
-  document.getElementById('artMedium').value = '';
-  document.getElementById('artDesc').value = '';
-  alert('Art piece added!');
-}
-
-// ── ADD GEAR ──
-function addGear() {
-  const brand = document.getElementById('gBrand').value.trim();
-  const name = document.getElementById('gName').value.trim();
-  const review = document.getElementById('gReview').value.trim();
-  const rating = parseInt(document.getElementById('gRating').value) || 4;
-  if (!brand || !name) return alert('Please fill in brand and product name.');
-  const stars = Array.from({length:5},(_,i)=>`<span class="${i<rating?'':'empty'}">★</span>`).join('');
-  const grid = document.querySelector('.gear-grid');
-  const card = document.createElement('div');
-  card.className = 'gear-card';
-  card.innerHTML = `
-    <div class="gear-brand">${brand}</div>
-    <div class="gear-name">${name}</div>
-    <div class="gear-review">${review}</div>
-    <div class="gear-rating">${stars}</div>`;
-  grid.appendChild(card);
-  document.getElementById('gBrand').value = '';
-  document.getElementById('gName').value = '';
-  document.getElementById('gReview').value = '';
-  alert('Gear review added!');
-}
+// ═══════════════════════════════════════
+// START
+// ═══════════════════════════════════════
+loadData();
 </script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+{
+  "about": {
+    "photo": ""
+  },
+  "trailAreas": [
+    {
+      "section": "Section 29",
+      "name": "Owen Sound Side Trail",
+      "desc": "Daily access from home. Limestone outcrops, cedar groves, and the escarpment edge above town. Best in early morning fog.",
+      "image": ""
+    },
+    {
+      "section": "Section 30",
+      "name": "Inglis Falls Area",
+      "desc": "One of the best waterfall sections on the escarpment. Rock shelves and fossil beds along the Sydenham River.",
+      "image": ""
+    },
+    {
+      "section": "Section 31\u201332",
+      "name": "Walters Falls to Eugenia",
+      "desc": "Deep forest and open escarpment views. Hidden caves and seasonal streams through the Beaver Valley corridor.",
+      "image": ""
+    }
+  ],
+  "gallery": [],
+  "prints": [
+    {
+      "title": "Morning Fog \u2014 Owen Sound Escarpment",
+      "price": "$125",
+      "desc": "16\u00d720 canvas. Limited run of 25. Signed and numbered.",
+      "image": ""
+    },
+    {
+      "title": "Inglis Falls \u2014 Winter Ice",
+      "price": "$175",
+      "desc": "20\u00d724 canvas. Limited run of 15. Signed and numbered.",
+      "image": ""
+    },
+    {
+      "title": "Georgian Bay Cedar Shore",
+      "price": "$125",
+      "desc": "16\u00d720 canvas. Limited run of 20. Signed and numbered.",
+      "image": ""
+    }
+  ],
+  "art": [
+    {
+      "title": "Escarpment Edge \u2014 Autumn",
+      "medium": "Encaustic Wax",
+      "desc": "Hot wax and pigment on wood panel. The light that comes sideways through old maple in October.",
+      "image": ""
+    },
+    {
+      "title": "Georgian Bay Shoreline",
+      "medium": "Oil Painting",
+      "desc": "Oil on canvas. The cold blue of Georgian Bay on a November morning. Cedar leaning over flat rock.",
+      "image": ""
+    },
+    {
+      "title": "Cave Light \u2014 Section 31",
+      "medium": "Encaustic Wax",
+      "desc": "Encaustic on panel. The way light enters a small cave mouth in afternoon. Found on the trail, not on any map.",
+      "image": ""
+    }
+  ],
+  "gear": [
+    {
+      "brand": "MEC \u00b7 Canada",
+      "name": "Approach Trail Boot",
+      "review": "Four seasons on the Bruce Trail and still going. The limestone edge sections in wet weather are where most boots fail \u2014 these grip. Good Canadian value.",
+      "rating": 4
+    }
+  ]
+}
